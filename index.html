@@ -1,13 +1,488 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecurePNG - Network Security Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS for SecurePNG.com */
+        :root {
+            --primary-color: #0056b3; /* Darker blue for accents */
+            --secondary-color: #007bff; /* Bright blue for main buttons/highlights */
+            --text-color: #333;
+            --light-gray: #f4f4f4;
+            --dark-gray: #555;
+            --white: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        header h1 a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 86, 179, 0.8)), url('https://via.placeholder.com/1500x800/007bff/ffffff?text=Network+Security+Background') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .hero h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #0056b3; /* Slightly darker secondary on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+            text-align: center;
+        }
+
+        .services h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .service-item p {
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            text-align: left;
+            background: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .feature-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .feature-item img {
+            width: 150px; /* Adjust size as needed */
+            height: auto;
+            margin: 0 30px;
+            border-radius: 5px;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .feature-content p {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+        }
+
+        /* Call to Action Section */
+        .cta {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer nav ul {
+            margin-top: 15px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        footer nav ul li {
+            margin: 0 10px;
+        }
+
+        footer nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 15px;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .services h2, .features h2, .cta h2 {
+                font-size: 2rem;
+            }
+
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .feature-item:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .feature-item img {
+                margin: 0 auto 20px auto;
+            }
+
+            .cta p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 8px 0;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .service-item {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1><a href="/">SecurePNG</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#features">Why Us?</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Protect Your Enterprise, Empower Your Workforce 🛡️</h2>
+                <p>SecurePNG delivers robust Firewall, IPS, and IDS solutions to safeguard your HQ and branch connectivity, ensuring seamless operations and peace of mind.</p>
+                <a href="#contact" class="btn">Get a Free Consultation</a>
+            </div>
+        </section>
 
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Our Core Services</h2>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h3><i class="fas fa-firewall"></i> Firewall Management</h3>
+                        <p>Comprehensive management of your firewalls to control network traffic, prevent unauthorized access, and protect your critical assets from external threats.</p>
+                        
+                    </div>
+                    <div class="service-item">
+                        <h3><i class="fas fa-shield-alt"></i> Intrusion Prevention Systems (IPS)</h3>
+                        <p>Proactive detection and blocking of malicious activities. Our IPS solutions identify and stop cyberattacks before they can compromise your network.</p>
+                        
+                    </div>
+                    <div class="service-item">
+                        <h3><i class="fas fa-bell"></i> Intrusion Detection Systems (IDS)</h3>
+                        <p>Continuous monitoring of your network for suspicious activity and policy violations. We provide real-time alerts and detailed reporting for swift incident response.</p>
+                        
+                    </div>
+                    <div class="service-item">
+                        <h3><i class="fas fa-project-diagram"></i> Network Optimization</h3>
+                        <p>We fine-tune your network infrastructure to ensure enterprise applications run smoothly, reducing latency and maximizing performance for your staff.</p>
+                        
+                    </div>
+                    <div class="service-item">
+                        <h3><i class="fas fa-globe"></i> Remote Branch Security</h3>
+                        <p>Extend robust security to your remote and branch offices. Our solutions ensure secure, reliable connectivity, no matter how distant your locations are.</p>
+                        
+                    </div>
+                    <div class="service-item">
+                        <h3><i class="fas fa-headset"></i> 24/7 Monitoring & Support</h3>
+                        <p>Our expert team provides round-the-clock monitoring and support, ensuring your network is always protected and any issues are addressed promptly.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Why Choose SecurePNG?</h2>
+                <div class="feature-item">
+                    <img src="https://via.placeholder.com/150x150/007bff/ffffff?text=Peace+of+Mind" alt="Peace of Mind">
+                    <div class="feature-content">
+                        <h3>Focus on Growth, Not Threats 📈</h3>
+                        <p>With SecurePNG handling your network security, you're free to concentrate on your core business objectives and expansion, knowing your infrastructure is secure.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img src="https://via.placeholder.com/150x150/007bff/ffffff?text=Optimized+Performance" alt="Optimized Performance">
+                    <div class="feature-content">
+                        <h3>Uninterrupted Staff Performance ⚡</h3>
+                        <p>Our optimized networks ensure your enterprise applications perform flawlessly, empowering your staff to work efficiently without cyber disruptions.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img src="https://via.placeholder.com/150x150/007bff/ffffff?text=Remote+Ready" alt="Remote Ready">
+                    <div class="feature-content">
+                        <h3>Secure Remote Connectivity 🌐</h3>
+                        <p>Whether your branches are around the corner or across the globe, we ensure they have the same high level of security and reliable connectivity as your HQ.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img src="https://via.placeholder.com/150x150/007bff/ffffff?text=Expert+Team" alt="Expert Team">
+                    <div class="feature-content">
+                        <h3>Expertise You Can Trust ✅</h3>
+                        <p>Our team of certified professionals brings years of experience in managing complex network security landscapes, providing you with reliable and effective solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="contact" class="cta">
+            <div class="container">
+                <h2>Ready to Secure Your Network?</h2>
+                <p>Don't let cyber threats hold your business back. Contact us today for a tailored security solution.</p>
+                <a href="mailto:info@securepng.com" class="btn">Contact SecurePNG</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SecurePNG. All rights reserved.</p>
+            <nav>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#features">Why Us?</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-
