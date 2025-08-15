@@ -3,8 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SecurePNG - Network Security Solutions</title>
+
+    <title>SecurePNG - Enterprise Network Security | Firewall, IPS, IDS Solutions</title>
+
+    <meta name="description" content="SecurePNG provides comprehensive Firewall, IPS, and IDS solutions to secure your HQ and branch connectivity. Optimize network performance and protect against cyber threats with our expert services.">
+    <meta name="keywords" content="network security, firewall management, IPS, IDS, intrusion prevention, intrusion detection, branch office security, remote connectivity, enterprise network, cyber threats, network optimization, IT security services, Cisco, Nokia, Juniper, Versa Networks, Fortinet">
+    <meta name="author" content="SecurePNG Team">
+    <meta name="robots" content="index, follow"> <link rel="canonical" href="https://www.securepng.com/"> <meta property="og:title" content="SecurePNG - Enterprise Network Security Solutions">
+    <meta property="og:description" content="SecurePNG secures your HQ and branch connectivity with Firewall, IPS, and IDS, optimizing networks and protecting against cyber threats for seamless business operations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.securepng.com/"> <meta property="og:image" content="https://www.securepng.com/images/securepng-social-share.jpg"> <meta property="og:image:alt" content="SecurePNG network security solutions logo and services">
+    <meta property="og:locale" content="en_AU"> <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@SecurePNG_Official"> <meta name="twitter:creator" content="@SecurePNG_Official"> <meta name="twitter:title" content="SecurePNG - Expert Network Security for Your Enterprise">
+    <meta name="twitter:description" content="Protect your HQ and remote branches with SecurePNG's advanced Firewall, IPS, and IDS management. Optimize performance and gain peace of mind from cyber threats.">
+    <meta name="twitter:image" content="https://www.securepng.com/images/securepng-twitter-card.jpg"> <meta name="twitter:image:alt" content="SecurePNG providing network security services">
+
+    <link rel="icon" type="image/png" href="https://www.securepng.com/favicon.png"> <link rel="apple-touch-icon" href="https://www.securepng.com/apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlroq8pPjE+R+u0xPq90hT1a1pM+XF3z5lJb8g+w3tK9+1C5L7+rW4/R8+q3bW6Gj0Q2d2i4h5+q3d7" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* CSS for SecurePNG.com */
         :root {
@@ -160,6 +176,13 @@
             font-size: 1.5rem;
             color: var(--secondary-color);
             margin-bottom: 15px;
+            display: flex; /* Added flex for icon alignment */
+            align-items: center; /* Center icon vertically */
+        }
+
+        .service-item h3 i {
+            margin-right: 10px; /* Space between icon and text */
+            color: var(--primary-color); /* Color for icons */
         }
 
         .service-item p {
@@ -217,6 +240,85 @@
             font-size: 1.1rem;
             color: var(--dark-gray);
         }
+
+        /* Challenges Section */
+        .challenges {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--light-gray); /* Added background for visual separation */
+        }
+
+        .challenges h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .challenges .subtext {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+            margin-bottom: 40px; /* Increased margin */
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .challenge-image {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* More prominent shadow */
+        }
+
+        .challenge-image img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .partners h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .partners .subtext {
+            color: var(--dark-gray);
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .vendor-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 20px 0; /* Added padding */
+        }
+
+        .vendor-logos img {
+            max-width: 150px;
+            height: auto;
+            filter: grayscale(80%); /* Make them grayscale */
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .vendor-logos img:hover {
+            filter: grayscale(0%); /* Full color on hover */
+            opacity: 1;
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
 
         /* Call to Action Section */
         .cta {
@@ -300,7 +402,7 @@
                 font-size: 1rem;
             }
 
-            .services h2, .features h2, .cta h2 {
+            .services h2, .features h2, .cta h2, .challenges h2, .partners h2 {
                 font-size: 2rem;
             }
 
@@ -319,6 +421,14 @@
 
             .cta p {
                 font-size: 1.1rem;
+            }
+
+            .vendor-logos {
+                gap: 20px;
+            }
+
+            .vendor-logos img {
+                max-width: 120px;
             }
         }
 
@@ -347,6 +457,10 @@
             .service-item {
                 padding: 20px;
             }
+
+            .vendor-logos img {
+                max-width: 100px;
+            }
         }
     </style>
 </head>
@@ -358,6 +472,7 @@
                 <ul>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#features">Why Us?</a></li>
+                    <li><a href="#partners">Partners</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -369,7 +484,7 @@
             <div class="container">
                 <h2>Protect Your Enterprise, Empower Your Workforce 🛡️</h2>
                 <p>SecurePNG delivers robust Firewall, IPS, and IDS solutions to safeguard your HQ and branch connectivity, ensuring seamless operations and peace of mind.</p>
-                <a href="#contact" class="btn">Get a Free Consultation</a>
+                <a href="mailto:info@securepng.com" class="btn">Get a Free Consultation</a>
             </div>
         </section>
 
@@ -378,34 +493,28 @@
                 <h2>Our Core Services</h2>
                 <div class="service-grid">
                     <div class="service-item">
-                        <h3><i class="fas fa-firewall"></i> Firewall Management</h3>
+                        <h3><i class="fas fa-shield-alt"></i> Firewall Management</h3>
                         <p>Comprehensive management of your firewalls to control network traffic, prevent unauthorized access, and protect your critical assets from external threats.</p>
-                        
                     </div>
                     <div class="service-item">
-                        <h3><i class="fas fa-shield-alt"></i> Intrusion Prevention Systems (IPS)</h3>
+                        <h3><i class="fas fa-fingerprint"></i> Intrusion Prevention Systems (IPS)</h3>
                         <p>Proactive detection and blocking of malicious activities. Our IPS solutions identify and stop cyberattacks before they can compromise your network.</p>
-                        
                     </div>
                     <div class="service-item">
-                        <h3><i class="fas fa-bell"></i> Intrusion Detection Systems (IDS)</h3>
+                        <h3><i class="fas fa-eye"></i> Intrusion Detection Systems (IDS)</h3>
                         <p>Continuous monitoring of your network for suspicious activity and policy violations. We provide real-time alerts and detailed reporting for swift incident response.</p>
-                        
                     </div>
                     <div class="service-item">
-                        <h3><i class="fas fa-project-diagram"></i> Network Optimization</h3>
+                        <h3><i class="fas fa-network-wired"></i> Network Optimization</h3>
                         <p>We fine-tune your network infrastructure to ensure enterprise applications run smoothly, reducing latency and maximizing performance for your staff.</p>
-                        
                     </div>
                     <div class="service-item">
                         <h3><i class="fas fa-globe"></i> Remote Branch Security</h3>
                         <p>Extend robust security to your remote and branch offices. Our solutions ensure secure, reliable connectivity, no matter how distant your locations are.</p>
-                        
                     </div>
                     <div class="service-item">
                         <h3><i class="fas fa-headset"></i> 24/7 Monitoring & Support</h3>
                         <p>Our expert team provides round-the-clock monitoring and support, ensuring your network is always protected and any issues are addressed promptly.</p>
-                        
                     </div>
                 </div>
             </div>
@@ -417,32 +526,62 @@
             <div class="container">
                 <h2>Why Choose SecurePNG?</h2>
                 <div class="feature-item">
-                    <img src="https://via.placeholder.com/150x150/007bff/ffffff?text=Peace+of+Mind" alt="Peace of Mind">
+                    <img src="https://bizsuccesscg.com/wp-content/uploads/2017/04/05-02.jpg" alt="Peace of Mind">
                     <div class="feature-content">
                         <h3>Focus on Growth, Not Threats 📈</h3>
                         <p>With SecurePNG handling your network security, you're free to concentrate on your core business objectives and expansion, knowing your infrastructure is secure.</p>
                     </div>
                 </div>
                 <div class="feature-item">
-                    <img src="https://via.placeholder.com/150x150/007bff/ffffff?text=Optimized+Performance" alt="Optimized Performance">
+                    <img src="https://media.licdn.com/dms/image/v2/D4E12AQF-mlbR1jN0KQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1702033454321?e=2147483647&v=beta&t=0oe7g1wYI4cuKzaI8nXMDP9GdZyAR1bQdwk0uquImPY" alt="Optimized Performance">
                     <div class="feature-content">
                         <h3>Uninterrupted Staff Performance ⚡</h3>
                         <p>Our optimized networks ensure your enterprise applications perform flawlessly, empowering your staff to work efficiently without cyber disruptions.</p>
                     </div>
                 </div>
                 <div class="feature-item">
-                    <img src="https://via.placeholder.com/150x150/007bff/ffffff?text=Remote+Ready" alt="Remote Ready">
+                    <img src="https://www.ccontrols.com/images/enews/remotevpn2020.jpg" alt="Remote Ready">
                     <div class="feature-content">
                         <h3>Secure Remote Connectivity 🌐</h3>
                         <p>Whether your branches are around the corner or across the globe, we ensure they have the same high level of security and reliable connectivity as your HQ.</p>
                     </div>
                 </div>
                 <div class="feature-item">
-                    <img src="https://via.placeholder.com/150x150/007bff/ffffff?text=Expert+Team" alt="Expert Team">
+                    <img src="https://media.istockphoto.com/id/1346125184/photo/group-of-successful-multiethnic-business-team.jpg?s=612x612&w=0&k=20&c=5FHgRQZSZed536rHji6w8o5Hco9JVMRe8bpgTa69hE8=" alt="Expert Team">
                     <div class="feature-content">
                         <h3>Expertise You Can Trust ✅</h3>
                         <p>Our team of certified professionals brings years of experience in managing complex network security landscapes, providing you with reliable and effective solutions.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="challenges">
+            <div class="container">
+                <h2>Facing Network Security Challenges? 🤔</h2>
+                <p class="subtext">Cyber threats and network complexities can disrupt your business operations. We provide robust solutions to overcome these pervasive issues and restore your peace of mind. 
+                </p>
+                <div class="challenge-image">
+                    <img src="https://www.intrusion.com/wp-content/uploads/2023/01/Top-challenges-facing-your-SOC.png" alt="Illustration of network challenges">
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="partners" class="partners">
+            <div class="container">
+                <h2>Our Technology Partners 🤝</h2>
+                <p class="subtext">We partner with industry-leading vendors to deliver best-in-class security and networking solutions tailored to your needs. This ensures you benefit from the most advanced and reliable technologies available.
+                </p>
+                <div class="vendor-logos">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1280px-Cisco_logo_blue_2016.svg.png" alt="Cisco Logo">
+                    <img src="https://www.nokia.com/sites/default/files/2023-02/nokia-refreshed-logo-1_1.jpg?height=244&width=543" alt="Nokia Logo">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAa4AAAB1CAMAAAAhpfXwAAAAgVBMVEX///8AAADq6ur6+vr19fXDw8OmpqYzMzONjY2ioqLt7e1VVVVra2uqqqosLCyxsbGVlZUYGBicnJxTU1Ph4eFFRUW6urocHBwqKirNzc2Dg4N5eXnY2NheXl63t7c6OjqGhobR0dEjIyNvb28NDQ3b29tBQUFLS0s3NzdcXFwLCwtCoXd7AAAPtElEQVR4nO2d2YKjKhCGXdOa1djGtJrF7J15/wc8GikWBaNIPHEm/81MG0XkEyiKAjXtTWUFdug6aRwnmeLYcUahHVj/d66eyYh2XnK/ztdnXT8vf66T2LcDUzIxy4jCmZeVQfJQ7Pi20swq0jiMr9nj8rRcOfa7Mtv4E0Gu93Hrco6872M1oVvtNRY6y6cPxuig0TYHme7o2ppTDiknm6zmzqHuJqa+zKWzRbQ/LxtpfZsm3mLT9p2IkieZntbmmVHg3gSJTGqvA1wj+qDTAdcUlbfod9NbPmNV6OiLy9NE57C4vpoljDWPo8aPZfnrBin+ho0SC1fiJN4Ll9+mPB3RTdTgypVcGj2V8zylQr/Pa5j9U5fAO+E6NKxZoLOgQ1CHS9e/g6fPFLZJL6lPy5rUX/5GuLx2BZkr5d5EJS5dj+ufyNwKrvvDP/xV1ylGzzLzXZuXPnGdKnlbrxLH893ZYjFyPS89cazFO+8manHpX3UPGpTPXjmL6IItdzOI3FPJdBInV62nx+/UywogtKMoChd+Wv/u9IirZFidFhfOazg+zKbsebzXTTEuXd8In4etDnv3wh1iGQvG0hs3SkxQBHXqD9eMzmgiLp9MB4bsqXpCLa7pbFQr13dOq3JDJsoPU8BxXTdnxOTEteAUOrEWZj9Rb7jorDpP3ymL7uaq1nEtrlHldJ6CETvy4VeIS5tcj+/43Cn3hD31DsqUbY+4yFDjJmoqGNEdfKWcanG5TbNq0eb5nnsG+X3SJNeLmldM00b413Vt41KX5Z5wkUbliR1G5IkvUYMre3rK+vE5v99qf+XogC/gdHHkhZV1MfaG6xuyKhz6VkV6u3L1UoUrG7PqwpvQ1aGx+wO/ltXnxI9Tb6vXqidcuOfatkkrhavKBNTh0jYYSaUOj/FPLawCDKVSg8BwPbfKH6uecHnCh6gVuGvKdVUhLu0grF6492zmCUQCr0U5G3j81txRWVVPuOa82zwXLsqSBa0SF3mVSpnD5Zu2Sg4akqPgNvVepifqBxduVtqmduNlTzEuXIdLxiEM139bJgeDxpL1B6axzHALqx9c0KG3sDMKgdOm1OWpxYXNDcZWx91tM589EdTKlJvlcqVrp35wQUPQergBD7nmH1aDS4N5AqaPgjzzR7x1uvLyDBC91snR6gcXdNrtxxswAGAHqYpxwSRcSh+EyvV8fqUsMA6Z4tuhg10Mjb5wIe9LfRwCV/x6qRgXuJroAREY+NwZgXpBM7qjD8KDdAtD6QcX7+1tppD36KpxaTBvQx2CMpCpDcgOZgZyqFy6dV394DJ5N2kmaPJZBqpxQZNLNdYw9GifGJ7YYxqTCedYe/WCC8pcIoYOhgCsy0E1Lnhg0k/BfZ9M5fMFziv62LxDekS94Dqg9CT80ABmyj2qCpeL0iNjopB7h4aC56XtI3So9VCGVS+4wO/Z3sjCRjY78FKNq2q2gbtSyjIAW4MeEaNDDT37IvWCy+6QHgqDYL3YqnHZlfSQO+VLIscaZhNWD0l037R6wQUvb6N5yZJQm886iFTjgupP7E90oPHkHKtlJSeQ44VcgqBecMEkq0zL8ltc+sMcfFXtwtUBmrOZRI41bGlSHRWU8058URP1gguG+TKTqGiEzXp0VOOqGBYHdEDSH4sKgTIDgX+ruZiqesEFhpdMBhEudk5PNS54n7CpAe2BTPOtYac8ZR/9Y7jYa1XjAqfhpnxAJscaLsAVOQJDzyHggmGjTGMIM17MQdW4IMIGd64oZlDWZYQemLIrh1S7ujQt3PViqnFVqjCaQpB1GS0qtKGcJW2XcjJviwtCH5iDinFBcoQOmvptFQhECZkulH30waUOFwy7yCgLDR9kPXwowSU58sGlDhdEV5BBEfKl/EzkhConZc5+cKnDpVfyJ1gw3lJ/yC0+uJThgnEGMeQg/Q+utno9LrxugVyoCJdevckHF5YkLhysS1yaH1xviwvvRUCZgR9c74qLrDKhntYUrBJvK+LG+eBSgossq03pw8gy9MdGJ5EEP7gU4IrIkn12hmappHApfXB1xsXs9cNGwh85pdJJH1wiXE1KxIxcsu47V2mWF4UcdAyEofTBJcL1O/mu0+R2rW7KVC5F5KLvGGZG6YNLhEtClQgKtIikYxAnpQ8uZbiW1fhHdFfZCZSqPrhU4eK1eGh6udPCVEYfXGpwJdxMOZyn6KQ3x8WEv74trutMED7SJRiIq1figqVjHXAx66/fEtc+WTzfyE7ZHs5vjosJku4X19b1n2gWbp48Gqyd7LRMn9YrcYGTugOuFX2sX1wqXBFQLB1D2qsJvgIXBLXKLPBBs0fMipE3dULVCd1AcklDVa/EBcUrs40biuZnRiwDxIVuK7lgqKpX4uqyqQAv5GuAuDotx+Polbgq62daCE3spfSxAeKqLtDrplfiArtIpqNFlzKbswwQV6el5By9EhfE30s4pLnZGiAuPIhTkthrccHB9tsh4Q1gmG5viLgc7i2k9UpcGvo8i8S+lkDmwjs4JFzQIXTYiZXWS3HBLi7t7SLYTJ3xxQ0RF9hMrffH4+uluKAlaL/wGQU5sK7sQeICT5ya6vVSXGDGtt5uDNZ0sr3eIHHhHU67bWmH9FJcOKttvYYxN1eDxIU3d10+P/W5XooLr/5sOezAqwNYb+MwceGtk1WEACjGVUoGB4638/JCTGxpCfYwcZEPWEnEr5WHrK/FhfcN/uFfxpcteL6B4iJfQGlbyJujnvLTUoSr7G/CQZMtokvIh8lKXAaKi/oCTbv6lVbzphhX2WQnX0Jq/H0V8nmKco83VFxk6Ze+bb4nCHxgk3laRbjG3AfXiF2kN7VkXXJBGctgcWnk67vLhva8gREz8Q98XPZkur23CTCABqySGerTVfr0ucERUYHMlfIaLi7y1ZpsvNygXDf0lxjpRoaL6/RoY+MWnvQDSqbqamE+4zcJ6xqDsUsHIVV7u+HiYj8UetvVNonW4sqcTT8uD5e/Gx/n86nmNZ9XBGOOU39GOqOVF/GKe2w7bMAYJ5RywLg0g/0a+XbBb2nMjfvNnFgayfJwfWuXrGL5ntZ8LyOIouE5c129rPPXNvVGs50d2buZ68X3r8qqUN5Xg4eMSzNLGLJWMR3Zh6B4TtO4RDsvqYQ4bkvPysG18R+4QkdLGrvSwWvE/fHpN5mr4noZB42r9E3aRvoSmgIUrmiUNbXXn6mpxY1xoVdHMBoeV96sJ+LH+A0clzYWfZecrzmnL+LgGifaJdbCNBsvNB4loFSE88bhWpQpjqYCj/DQcWUNV3NgV67hwOu77uYlMx5vgcH5MrQgGyiVms8U2U1rWCp03w8fV2YipnoTxYLZTB4u42rlrWCwb1y5YA6uNiLBmE1EucM61aXA/UJSQ8Fyb+Yg4GJfZNhdQeIujRTF9U3NOhYPpQEX8y4FmbUdpZPmc/bwobGnV2zc7VyQyVssMG6xTKtQ42y9rcahcztyCmE+cUKZtmOzeFZ2tGBdTLPPK1rjKJw5cYKUerMwCv4CBm1lBVk5+Kgg+iwEqFzdvrD3UT+CQZfUUpOPehaezrn+3zn56LnI5JuquP2PXifcErIrHT96R4VLTOvTc725xi49hnrZsPKj7jIP3l6npW7fox4VBGPu30bAKB8PWVWZjxPZ6+m/DCp1I5x53mjH+JbG1B0oB5JF/6FRboGxPfMcfxc1G54Fl8tls4nsmZ9MqhMzjZJ4M+VOKIbXGQ0d2V3vHjYUxwfhPuwsKoENG/2AvVuWQ1wYJ0LMoRPb49ZpTq88d7AFF5FtE69NImtOuljqtoDrUzkuZvQxR036lH06Aa7Rw4dHFZ3DNDI2LKAp1mjPr9fiJccwvFJ6qGquqNL0Ma08wnZ9204nxart5+7cRBdqoCa8WX7TCK67ybZ62hj9N0NiUoe/6aUlR2YtW4Lmk/KCPkVF+V5yRBCF4uk/0MaODyne3p/CtcORmxdd/0X10rLvTaqHEFfzSec3U4ZrwmwpQ3AJG3eP9eovKL/2I6iSpIbaQru0dd4d1y+Pmc49wKwswWUT13vCLGpsEqQmwOVIfqnvDZThOkzoeYT2uCwqFNbTpzc9hb8idOKyPEH3Dc0eiyu7aVHtMK4NVfX3rfsbHq7pQJvBQhmuyKRD5NrjygoXn7rU7RH5NSl+CCuR6Bb0cCVccC3gCuie8Nx6urSE63hyZbajeSeZea8bUZN9ErhGuNvPijdfwwGFci7awm11YVeMkijhWrC4xkwsxb71RkXed/5Nqfv25IwWB0PmA5DvpgeufOUAGNcSuAxsaHl5/NYRGq0DamQ5G0IdENNK7So2oS9wWUvmG4jJx2uEcGVvLmzWL4FL+9VPcPGOQhAXJqPBWZltofax0ncVtanA9cP+mIcB+8O1EpQI4TJwJ0FwXcMdaMH0PRVcPjoQPKpTALXgTzEgO/B2MEOjcRbXBjq5B678S7SMC+QxY7+PF5e/oVmTE8KVD2+KKiAYJtMlVMEVIFeGV1SnnwIFtIUHXiOGWkyPRJabho+jNHNcd/3nq/SBDgNsh3mqbDfLYQlw5Q6bR0NDcP1ZE9Xjygo/Kf55VA6nWKKbop6Hi2uupyipn+NDRfAVautWup8ZI8al6ivazJLCpzEfupEnJYxLWxdhQTJ9V3YkH8EGqDpdCj5r5Jza8HCtoXZRmmOf4Ur/82hBHf5OkMEj/k/Jtg8DE8GFXmUpXJdHsfpgyJ3zNC4QDRnwShYNHTz9WLj+IybUcQU05qLPmW/+0N+j/GdEcOXLZCJJXEVl+QVfr5Ovd/TwokdOOHCAbktMjZQGswJ4gXBX2EhuC9aBi8KVu4YsSVx5YRu46znkFeuIIa2q2wvNULtJcJn07O4KQ/KEe2TL7ek5cNG4rNwZ9SWFK+ufDJeEqpz1mUEiw/1qkPgXajcpQ56eN1vRnkLBXjcy+2wNXjSuvIFZXKVwZYU3W5FFTtkAeUQCmseVZbsuVA163LUnHicKlyFoDq1/0tZgcOXOqLUcrji7kNShjPuRCmh2SjsKh3gxP42LmoimpyddOMx2gH6T+cm/Tiyuxw5WUrjy5aHUrHRul1PW+zWrX5jlOCEDLMarccLWBo0r927kYBJ9OSIuKHegoTEdVcJlULjWE6Ib3U/wcOWAqNc/YXezMvNx0srZ2Xbo5/89AjsGl4WTYHCNCzKPIdo1dheLmZ+7XJotHvnLVMKVO6OKRqy0yJFuibi4Tow9EZUXd+yoxUFnkpjDGBI+1Lq9nlKHZ0UeLY9eFDbM0JjO2u1Yq81GkWVRSGtH+yUilzNPeEhS6i8zScqejM0s3t7v23hEG+abHWON73bFWGrhMmZEloHiP8HOSbI0Es9u0m/9Bze94U+pjmgnAAAAAElFTkSuQmCC" alt="Juniper Logo">
+                    <img src="https://companieslogo.com/img/orig/versa-networks_BIG-18bd8e35.png" alt="VersaNetworks Logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Fortinet_logo.svg" alt="Fortinet Logo">
                 </div>
             </div>
         </section>
@@ -465,13 +604,13 @@
                 <ul>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#features">Why Us?</a></li>
+                    <li><a href="#partners">Partners</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
             </nav>
         </div>
     </footer>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
