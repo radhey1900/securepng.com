@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sprint Networks | PNG Cyber Security Readiness Checker</title>
+
+  <style>
+    :root{
+      /* Brighter “cyber” palette */
+      --bg:#f6f9ff;
+      --bg2:#eef5ff;
+      --card:#ffffff;
+      --card2:#f7fbff;
+
+      --text:#0f172a;
+      --muted:#475569;
+      --muted2:#64748b;
+
+      --border:#dbe7ff;
+      --border2:#cfe0ff;
+
+      --blue:#1d4ed8;
+      --cyan:#06b6d4;
+      --violet:#7c3aed;
+      --pink:#db2777;
+      --green:#16a34a;
+      --amber:#f59e0b;
+      --red:#ef4444;
+
+      --shadow: 0 18px 45px rgba(2, 29, 79, .10);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 600px at 10% 0%, rgba(6,182,212,.20), transparent 55%),
+        radial-gradient(900px 560px at 95% 10%, rgba(124,58,237,.18), transparent 55%),
+        radial-gradient(900px 520px at 50% 115%, rgba(219,39,119,.12), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+
+    /* Subtle grid */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(to right, rgba(29,78,216,.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(29,78,216,.08) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(700px 420px at 15% 0%, black, transparent 70%);
+      opacity:.35;
+    }
+
+    .wrap{
+      max-width: 1040px;
+      margin: 34px auto 70px;
+      padding: 0 16px;
+      position:relative;
+      z-index:1;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 14px;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none; color:var(--text);
+    }
+
+    .logo{
+      width:44px; height:44px;
+      border-radius:14px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(6,182,212,.75), transparent 55%),
+        radial-gradient(circle at 70% 70%, rgba(124,58,237,.75), transparent 60%),
+        linear-gradient(135deg, rgba(29,78,216,.14), rgba(255,255,255,.7));
+      border:1px solid rgba(29,78,216,.22);
+      box-shadow: 0 12px 28px rgba(2, 29, 79, .12);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-70%;
+      background: conic-gradient(from 210deg, rgba(6,182,212,0), rgba(6,182,212,.20), rgba(124,58,237,.22), rgba(219,39,119,.18), rgba(6,182,212,0));
+      animation: spin 10s linear infinite;
+    }
+    @keyframes spin{ to{ transform:rotate(360deg);} }
+
+    .brandTitle{ line-height:1.15; }
+    .brandTitle strong{ font-size:14px; }
+    .brandTitle span{ display:block; font-size:12px; color:var(--muted2); margin-top:3px; }
+
+    .badge{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(29,78,216,.18);
+      background: rgba(255,255,255,.65);
+      color:var(--muted);
+      white-space:nowrap;
+      box-shadow: 0 10px 22px rgba(2,29,79,.08);
+    }
+
+    .hero{
+      border:1px solid rgba(29,78,216,.16);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(900px 320px at 10% 0%, rgba(6,182,212,.16), transparent 55%),
+        radial-gradient(900px 320px at 90% 35%, rgba(124,58,237,.14), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.70));
+      box-shadow: var(--shadow);
+      padding: 26px 22px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero h1{
+      margin:0 0 8px;
+      font-size: 26px;
+      line-height:1.2;
+      letter-spacing:.2px;
+    }
+    .hero p{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 900px;
+    }
+
+    .metaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 14px;
+    }
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      border:1px solid rgba(29,78,216,.16);
+      background: rgba(255,255,255,.60);
+      padding:8px 10px;
+      border-radius:999px;
+      color: var(--muted);
+      font-size:12px;
+      box-shadow: 0 10px 22px rgba(2,29,79,.06);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--cyan);
+      box-shadow: 0 0 14px rgba(6,182,212,.35);
+    }
+
+    .card{
+      margin-top: 18px;
+      border-radius: var(--radius);
+      border:1px solid rgba(29,78,216,.14);
+      background: rgba(255,255,255,.78);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .toolbar{
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      border-bottom:1px solid rgba(29,78,216,.12);
+      background: rgba(255,255,255,.75);
+    }
+
+    .progressWrap{ flex:1; min-width:220px; }
+    .progressTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:12px;
+      color: var(--muted);
+      margin-bottom:8px;
+      gap:10px;
+    }
+    .bar{
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(29,78,216,.10);
+      overflow:hidden;
+    }
+    .bar > div{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink));
+      transition: width .25s ease;
+    }
+
+    .content{ padding: 18px; }
+
+    .sectionTitle{
+      margin: 18px 0 10px;
+      font-size: 16px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .sectionTitle span{
+      color: var(--muted2);
+      font-weight: 700;
+      font-size: 12px;
+      border:1px solid rgba(29,78,216,.14);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.65);
+    }
+
+    .q{
+      border: 1px solid rgba(29,78,216,.12);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.82), rgba(247,251,255,.78));
+      padding: 14px;
+      margin: 10px 0;
+    }
+
+    .qTitle{
+      font-weight: 800;
+      letter-spacing:.2px;
+      line-height:1.35;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .qIcon{
+      width:30px; height:30px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      border:1px solid rgba(29,78,216,.14);
+      background: rgba(29,78,216,.06);
+      flex: 0 0 auto;
+      box-shadow: 0 8px 18px rgba(2,29,79,.07);
+      font-size: 16px;
+    }
+
+    .qHint{
+      margin: 8px 0 0 40px;
+      color: var(--muted2);
+      font-size: 12.5px;
+      line-height:1.5;
+    }
+
+    .opts{ margin-top: 12px; display:grid; gap:10px; }
+    label.opt{
+      display:flex; gap:10px; align-items:flex-start;
+      padding: 12px;
+      border-radius: 14px;
+      border:1px solid rgba(29,78,216,.12);
+      background: rgba(255,255,255,.70);
+      cursor:pointer;
+      transition: border-color .15s ease, background .15s ease, transform .08s ease;
+    }
+    label.opt:hover{
+      border-color: rgba(6,182,212,.45);
+      background: rgba(6,182,212,.07);
+    }
+    label.opt:active{ transform: translateY(1px); }
+    input[type="radio"]{
+      margin-top: 2px;
+      accent-color: var(--blue);
+      transform: scale(1.06);
+    }
+    .optText{ color: var(--text); font-weight:650; }
+    .optSub{
+      display:block;
+      margin-top: 3px;
+      font-size: 12px;
+      color: var(--muted2);
+      font-weight: 600;
+    }
+
+    .notice{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.55;
+      border:1px dashed rgba(29,78,216,.18);
+      background: rgba(255,255,255,.65);
+      padding: 12px 12px;
+      border-radius: 14px;
+    }
+
+    .actionsBottom{
+      margin-top: 18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+
+    button{
+      border:1px solid rgba(29,78,216,.16);
+      color: var(--text);
+      background: rgba(255,255,255,.65);
+      padding:12px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight: 800;
+      letter-spacing:.2px;
+      transition: transform .08s ease, background .15s ease, border-color .15s ease;
+      display:inline-flex; align-items:center; gap:8px;
+      user-select:none;
+      box-shadow: 0 12px 24px rgba(2,29,79,.08);
+    }
+    button:hover{
+      border-color: rgba(6,182,212,.55);
+      background: rgba(6,182,212,.10);
+    }
+    button:active{ transform: translateY(1px); }
+
+    .primary{
+      color:#fff;
+      border-color: rgba(29,78,216,.35);
+      background: linear-gradient(90deg, rgba(29,78,216,.98), rgba(6,182,212,.92));
+      box-shadow: 0 18px 35px rgba(29,78,216,.22);
+    }
+    .primary:hover{
+      background: linear-gradient(90deg, rgba(29,78,216,1), rgba(124,58,237,.92));
+      border-color: rgba(124,58,237,.35);
+    }
+    .secondary{
+      border-color: rgba(239,68,68,.20);
+    }
+    .secondary:hover{
+      border-color: rgba(239,68,68,.40);
+      background: rgba(239,68,68,.08);
+    }
+
+    .result{
+      margin-top: 18px;
+      border-radius: 18px;
+      border:1px solid rgba(29,78,216,.16);
+      background: rgba(255,255,255,.75);
+      padding: 16px;
+      display:none;
+      box-shadow: 0 18px 45px rgba(2,29,79,.10);
+    }
+    .resultTop{
+      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    }
+    .score{
+      font-size: 44px;
+      font-weight: 900;
+      margin:0;
+      line-height:1;
+      background: linear-gradient(90deg, var(--blue), var(--violet), var(--pink));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+    }
+    .label{
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+      font-weight: 700;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(29,78,216,.16);
+      background: rgba(255,255,255,.70);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 12px 24px rgba(2,29,79,.08);
+    }
+    .tagDot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--cyan);
+      box-shadow: 0 0 14px rgba(6,182,212,.35);
+    }
+    .recos{
+      margin-top: 12px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 13px;
+    }
+
+    .cta{
+      margin-top: 18px;
+      border-radius: 18px;
+      border:1px solid rgba(6,182,212,.22);
+      background:
+        radial-gradient(800px 220px at 20% 0%, rgba(6,182,212,.14), transparent 55%),
+        radial-gradient(800px 220px at 90% 60%, rgba(124,58,237,.12), transparent 55%),
+        rgba(255,255,255,.70);
+      padding: 16px;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      box-shadow: 0 18px 45px rgba(2,29,79,.10);
+    }
+    .cta h3{ margin:0 0 6px; font-size: 16px; }
+    .cta p{ margin:0; color: var(--muted); line-height:1.6; max-width: 760px; font-weight: 650; }
+    .cta a{
+      color:#fff;
+      text-decoration:none;
+      border:1px solid rgba(29,78,216,.28);
+      background: linear-gradient(90deg, rgba(29,78,216,.98), rgba(124,58,237,.92));
+      padding: 11px 14px;
+      border-radius: 14px;
+      font-weight: 900;
+      letter-spacing:.2px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+      box-shadow: 0 18px 35px rgba(124,58,237,.18);
+    }
+    .cta a:hover{
+      background: linear-gradient(90deg, rgba(29,78,216,1), rgba(6,182,212,.95));
+    }
+
+    .foot{
+      margin-top: 18px;
+      text-align:center;
+      color: rgba(15,23,42,.55);
+      font-size: 12px;
+      line-height:1.5;
+    }
+
+    @media (max-width: 560px){
+      .hero h1{ font-size: 22px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="#" onclick="return false;">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brandTitle">
+          <strong>Sprint Networks</strong>
+          <span>PNG Cyber Security Readiness Checker</span>
+        </div>
+      </a>
+      <div class="badge">✅ 20 Questions • 🎯 Score / 100</div>
+    </div>
+
+    <div class="hero">
+      <h1>Cyber Security Readiness Checker (PNG)</h1>
+      <p>
+        Built for Papua New Guinea organisations — covering people, process, and technology.
+        Answer 20 quick questions and get a clear score out of 100 with practical next steps.
+      </p>
+      <div class="metaRow">
+        <div class="pill"><span class="dot"></span> Business-friendly • no jargon</div>
+        <div class="pill"><span class="dot" style="background:var(--violet); box-shadow:0 0 14px rgba(124,58,237,.35);"></span> PNG scenarios: branches, power, connectivity</div>
+        <div class="pill"><span class="dot" style="background:var(--pink); box-shadow:0 0 14px rgba(219,39,119,.28);"></span> Instant result + recommendations</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="content">
+
+        <div class="notice">
+          ℹ️ This is a self-check for awareness and planning. For a professional assessment or managed protection, contact Sprint Networks.
+        </div>
+
+        <form id="quiz">
+          <!-- PEOPLE & AWARENESS -->
+          <div class="sectionTitle">People & Awareness <span>5 questions</span></div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🎓</div>1) How often do staff receive cyber awareness training (phishing, scams, safe browsing)?</div>
+            <div class="qHint">Most incidents begin with a message (email/SMS/WhatsApp), not complex hacking.</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q1" data-score="10"><div><div class="optText">Quarterly or ongoing</div><span class="optSub">Short, practical refreshers</span></div></label>
+              <label class="opt"><input type="radio" name="q1" data-score="7"><div><div class="optText">Once a year</div><span class="optSub">Basic but helpful</span></div></label>
+              <label class="opt"><input type="radio" name="q1" data-score="3"><div><div class="optText">Only after incidents</div><span class="optSub">Reactive</span></div></label>
+              <label class="opt"><input type="radio" name="q1" data-score="0"><div><div class="optText">Never / not sure</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🎣</div>2) Can staff recognise phishing emails/SMS (fake invoices, “account locked”, “urgent payment”)?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q2" data-score="10"><div><div class="optText">Yes — they verify first</div></div></label>
+              <label class="opt"><input type="radio" name="q2" data-score="6"><div><div class="optText">Some can, inconsistent</div></div></label>
+              <label class="opt"><input type="radio" name="q2" data-score="2"><div><div class="optText">Often clicked if it “looks real”</div></div></label>
+              <label class="opt"><input type="radio" name="q2" data-score="0"><div><div class="optText">No / not sure</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">💬</div>3) Do staff use WhatsApp/Facebook Messenger for business files or approvals?</div>
+            <div class="qHint">Common in PNG — but increases impersonation and data leakage risk.</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q3" data-score="10"><div><div class="optText">No — approved business channels only</div></div></label>
+              <label class="opt"><input type="radio" name="q3" data-score="7"><div><div class="optText">Limited use with clear rules</div></div></label>
+              <label class="opt"><input type="radio" name="q3" data-score="3"><div><div class="optText">Common use for work requests/files</div></div></label>
+              <label class="opt"><input type="radio" name="q3" data-score="0"><div><div class="optText">Primary method for approvals</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">💸</div>4) Do you verify payment requests and bank detail changes (invoice fraud protection)?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q4" data-score="10"><div><div class="optText">Yes — call-back verification + approvals</div></div></label>
+              <label class="opt"><input type="radio" name="q4" data-score="6"><div><div class="optText">Some checks, not standard</div></div></label>
+              <label class="opt"><input type="radio" name="q4" data-score="2"><div><div class="optText">Usually trust the email</div></div></label>
+              <label class="opt"><input type="radio" name="q4" data-score="0"><div><div class="optText">No / not sure</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🚨</div>5) Is there one clear way to report suspicious emails/messages?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q5" data-score="10"><div><div class="optText">Yes — simple reporting + fast response</div></div></label>
+              <label class="opt"><input type="radio" name="q5" data-score="6"><div><div class="optText">Sometimes reported</div></div></label>
+              <label class="opt"><input type="radio" name="q5" data-score="2"><div><div class="optText">Rarely reported</div></div></label>
+              <label class="opt"><input type="radio" name="q5" data-score="0"><div><div class="optText">No process</div></div></label>
+            </div>
+          </div>
+
+          <!-- ACCOUNTS & ACCESS -->
+          <div class="sectionTitle">Accounts & Access <span>5 questions</span></div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🔑</div>6) Do you use MFA for email (M365/Google) and admin accounts?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q6" data-score="10"><div><div class="optText">Yes — for everyone (especially admins)</div></div></label>
+              <label class="opt"><input type="radio" name="q6" data-score="6"><div><div class="optText">Only for some users</div></div></label>
+              <label class="opt"><input type="radio" name="q6" data-score="2"><div><div class="optText">Rarely used</div></div></label>
+              <label class="opt"><input type="radio" name="q6" data-score="0"><div><div class="optText">No / not sure</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🧩</div>7) Are passwords unique and strong (prefer passphrases), not shared?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q7" data-score="10"><div><div class="optText">Passphrases + password manager</div></div></label>
+              <label class="opt"><input type="radio" name="q7" data-score="7"><div><div class="optText">Strong passwords, mostly unique</div></div></label>
+              <label class="opt"><input type="radio" name="q7" data-score="2"><div><div class="optText">Reused / sometimes shared</div></div></label>
+              <label class="opt"><input type="radio" name="q7" data-score="0"><div><div class="optText">Shared passwords / no standards</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">👷</div>8) Do vendors/contractors have controlled access (no shared logins, time-limited)?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q8" data-score="10"><div><div class="optText">Yes — least privilege + expiry</div></div></label>
+              <label class="opt"><input type="radio" name="q8" data-score="6"><div><div class="optText">Some controls</div></div></label>
+              <label class="opt"><input type="radio" name="q8" data-score="2"><div><div class="optText">Shared credentials used</div></div></label>
+              <label class="opt"><input type="radio" name="q8" data-score="0"><div><div class="optText">No idea who has access</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🧾</div>9) Are accounts removed quickly when staff leave (offboarding)?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q9" data-score="10"><div><div class="optText">Same day / automated</div></div></label>
+              <label class="opt"><input type="radio" name="q9" data-score="6"><div><div class="optText">Within a week</div></div></label>
+              <label class="opt"><input type="radio" name="q9" data-score="2"><div><div class="optText">Often forgotten</div></div></label>
+              <label class="opt"><input type="radio" name="q9" data-score="0"><div><div class="optText">No process</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🛡️</div>10) Do you use separate admin accounts (not daily-use accounts) for admin work?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q10" data-score="10"><div><div class="optText">Yes — separate admin + MFA</div></div></label>
+              <label class="opt"><input type="radio" name="q10" data-score="6"><div><div class="optText">Some separation</div></div></label>
+              <label class="opt"><input type="radio" name="q10" data-score="2"><div><div class="optText">One account for everything</div></div></label>
+              <label class="opt"><input type="radio" name="q10" data-score="0"><div><div class="optText">Not sure</div></div></label>
+            </div>
+          </div>
+
+          <!-- DEVICES & RECOVERY -->
+          <div class="sectionTitle">Devices, Updates & Recovery <span>5 questions</span></div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🔄</div>11) Are Windows/macOS/phones and apps updated regularly?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q11" data-score="10"><div><div class="optText">Automatic updates + monitored</div></div></label>
+              <label class="opt"><input type="radio" name="q11" data-score="7"><div><div class="optText">When prompted</div></div></label>
+              <label class="opt"><input type="radio" name="q11" data-score="3"><div><div class="optText">Sometimes</div></div></label>
+              <label class="opt"><input type="radio" name="q11" data-score="0"><div><div class="optText">Rarely / never</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🧯</div>12) Do you run endpoint protection (EDR/AV) on all laptops/desktops?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q12" data-score="10"><div><div class="optText">Yes — centrally managed with alerts</div></div></label>
+              <label class="opt"><input type="radio" name="q12" data-score="6"><div><div class="optText">Basic AV on most devices</div></div></label>
+              <label class="opt"><input type="radio" name="q12" data-score="2"><div><div class="optText">Only on some devices</div></div></label>
+              <label class="opt"><input type="radio" name="q12" data-score="0"><div><div class="optText">No / not sure</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">📱</div>13) Are phones/laptops secured with PIN/biometric + auto-lock + encryption?</div>
+            <div class="qHint">Physical loss/theft is a real risk — encryption reduces impact.</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q13" data-score="10"><div><div class="optText">All devices protected (lock + encryption)</div></div></label>
+              <label class="opt"><input type="radio" name="q13" data-score="6"><div><div class="optText">Some devices protected</div></div></label>
+              <label class="opt"><input type="radio" name="q13" data-score="2"><div><div class="optText">Locks only (no encryption)</div></div></label>
+              <label class="opt"><input type="radio" name="q13" data-score="0"><div><div class="optText">No / not sure</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">💾</div>14) Do you have backups AND have you tested restore?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q14" data-score="10"><div><div class="optText">3-2-1 backups + tested restores</div></div></label>
+              <label class="opt"><input type="radio" name="q14" data-score="7"><div><div class="optText">Backups exist, restore rarely tested</div></div></label>
+              <label class="opt"><input type="radio" name="q14" data-score="2"><div><div class="optText">Manual/irregular backups</div></div></label>
+              <label class="opt"><input type="radio" name="q14" data-score="0"><div><div class="optText">No backups / not sure</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">⚡</div>15) Do key systems have UPS/power protection (firewall/router/server/storage)?</div>
+            <div class="qHint">Power fluctuations/outages can cause downtime and risky workarounds.</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q15" data-score="10"><div><div class="optText">UPS + monitoring + safe shutdown</div></div></label>
+              <label class="opt"><input type="radio" name="q15" data-score="6"><div><div class="optText">UPS for some equipment</div></div></label>
+              <label class="opt"><input type="radio" name="q15" data-score="2"><div><div class="optText">Limited protection</div></div></label>
+              <label class="opt"><input type="radio" name="q15" data-score="0"><div><div class="optText">No / not sure</div></div></label>
+            </div>
+          </div>
+
+          <!-- NETWORK & MONITORING -->
+          <div class="sectionTitle">Network, Email & Monitoring <span>5 questions</span></div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🧱</div>16) Do you have a firewall with security features (IPS, web filtering, app control) configured?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q16" data-score="10"><div><div class="optText">Yes — policies + logging + reviews</div></div></label>
+              <label class="opt"><input type="radio" name="q16" data-score="6"><div><div class="optText">Firewall exists, basic rules only</div></div></label>
+              <label class="opt"><input type="radio" name="q16" data-score="2"><div><div class="optText">Router/NAT only</div></div></label>
+              <label class="opt"><input type="radio" name="q16" data-score="0"><div><div class="optText">Not sure</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🌐</div>17) Are branch offices securely connected (SD-WAN/VPN) and centrally managed?</div>
+            <div class="qHint">Common PNG challenge: each branch grows differently and security becomes inconsistent.</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q17" data-score="10"><div><div class="optText">Centrally managed secure overlays + segmentation</div></div></label>
+              <label class="opt"><input type="radio" name="q17" data-score="6"><div><div class="optText">VPN exists, limited monitoring</div></div></label>
+              <label class="opt"><input type="radio" name="q17" data-score="2"><div><div class="optText">Each branch manages itself</div></div></label>
+              <label class="opt"><input type="radio" name="q17" data-score="0"><div><div class="optText">No secure connectivity / not sure</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">📧</div>18) Do you have email security (phishing filtering, impersonation protection, SPF/DKIM/DMARC)?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q18" data-score="10"><div><div class="optText">Advanced email protection + domain controls</div></div></label>
+              <label class="opt"><input type="radio" name="q18" data-score="6"><div><div class="optText">Basic filtering only</div></div></label>
+              <label class="opt"><input type="radio" name="q18" data-score="2"><div><div class="optText">Minimal controls</div></div></label>
+              <label class="opt"><input type="radio" name="q18" data-score="0"><div><div class="optText">Not sure / none</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">📊</div>19) Do you monitor security events (alerts/logs) and have someone responsible to respond?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q19" data-score="10"><div><div class="optText">Yes — central monitoring + response process</div></div></label>
+              <label class="opt"><input type="radio" name="q19" data-score="6"><div><div class="optText">Some monitoring, limited follow-up</div></div></label>
+              <label class="opt"><input type="radio" name="q19" data-score="2"><div><div class="optText">Only check when issues happen</div></div></label>
+              <label class="opt"><input type="radio" name="q19" data-score="0"><div><div class="optText">No monitoring</div></div></label>
+            </div>
+          </div>
+
+          <div class="q" data-question>
+            <div class="qTitle"><div class="qIcon">🧭</div>20) Do you have an incident plan (who to call, what to do first, how to recover)?</div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="q20" data-score="10"><div><div class="optText">Documented plan + practice exercises</div></div></label>
+              <label class="opt"><input type="radio" name="q20" data-score="6"><div><div class="optText">Basic plan (contacts + steps)</div></div></label>
+              <label class="opt"><input type="radio" name="q20" data-score="2"><div><div class="optText">Informal plan (“we’ll figure it out”)</div></div></label>
+              <label class="opt"><input type="radio" name="q20" data-score="0"><div><div class="optText">No plan</div></div></label>
+            </div>
+          </div>
+
+          <!-- SUBMIT BUTTON AT END (as requested) -->
+          <div class="actionsBottom">
+            <button type="button" class="secondary" id="resetBtn">🔄 Reset</button>
+            <button type="button" class="primary" id="submitBtn">✅ Submit & Get My Score</button>
+          </div>
+        </form>
+
+        <div class="result" id="result">
+          <div class="resultTop">
+            <div>
+              <p class="score" id="scoreText">0</p>
+              <div class="label" id="scoreLabel">Score out of 100</div>
+            </div>
+            <div class="tag" id="riskTag"><span class="tagDot" id="tagDot"></span><span id="tagText">Ready when submitted</span></div>
+          </div>
+          <div class="bar" style="margin-top:12px;"><div id="scoreFill"></div></div>
+          <div class="recos" id="recoText"></div>
+        </div>
+
+        <div class="cta">
+          <div>
+            <h3>Need practical cyber security that works in PNG?</h3>
+            <p>
+              Sprint Networks helps PNG organisations secure email, endpoints, networks, branches, and remote access —
+              with practical controls designed for real PNG connectivity and power conditions.
+            </p>
+          </div>
+          <a href="mailto:info@sprintnetworks.com">✉️ info@sprintnetworks.com</a>
+        </div>
+
+        <div class="foot">
+          © Sprint Networks • PNG Cyber Security Readiness Checker<br/>
+          Note: This self-check is informational and not a substitute for a professional risk assessment.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const quiz = document.getElementById("quiz");
+    const submitBtn = document.getElementById("submitBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    const result = document.getElementById("result");
+    const scoreText = document.getElementById("scoreText");
+    const scoreFill = document.getElementById("scoreFill");
+
+    const tagDot = document.getElementById("tagDot");
+    const tagText = document.getElementById("tagText");
+    const recoText = document.getElementById("recoText");
+
+    const answeredText = document.getElementById("answeredText");
+    const progressFill = document.getElementById("progressFill");
+
+    const QUESTIONS_COUNT = 20;
+
+    function countAnswered(){
+      const answered = new Set();
+      const checked = quiz.querySelectorAll('input[type="radio"]:checked');
+      checked.forEach(i => answered.add(i.name));
+      return answered.size;
+    }
+
+    function computeScoreOutOf100(){
+      const qs = Array.from(quiz.querySelectorAll("[data-question]"));
+      let total = 0;
+      let maxTotal = 0;
+      let unanswered = 0;
+
+      for (const q of qs){
+        const checked = q.querySelector('input[type="radio"]:checked');
+        const opts = Array.from(q.querySelectorAll('input[type="radio"]'));
+        const qMax = Math.max(...opts.map(o => Number(o.dataset.score || 0)));
+        maxTotal += qMax;
+
+        if (!checked){
+          unanswered++;
+          continue;
+        }
+        total += Number(checked.dataset.score || 0);
+      }
+
+      const score100 = maxTotal > 0 ? Math.round((total / maxTotal) * 100) : 0;
+      return { score100, total, maxTotal, unanswered };
+    }
+
+    function band(score){
+      if (score >= 85) return {
+        name: "Strong Readiness",
+        dot: "#16a34a",
+        tip: "You have a strong baseline. Next: improve visibility (monitoring) and keep training consistent."
+      };
+      if (score >= 65) return {
+        name: "Good Readiness",
+        dot: "#06b6d4",
+        tip: "Good foundations, but a few gaps could still cause disruption. Prioritise MFA, backups, and email protection."
+      };
+      if (score >= 40) return {
+        name: "Needs Attention",
+        dot: "#f59e0b",
+        tip: "Moderate risk. Focus on staff awareness, patching, endpoint protection, and removing shared passwords."
+      };
+      return {
+        name: "High Risk",
+        dot: "#ef4444",
+        tip: "High likelihood of incident. Start with MFA for email, strong passwords, backups + restore testing, and phishing training."
+      };
+    }
+
+    function updateProgress(){
+      // If you removed the top toolbar, these IDs won't exist; guard it.
+      const a = countAnswered();
+      if (answeredText && progressFill){
+        answeredText.textContent = `Answered: ${a} / ${QUESTIONS_COUNT}`;
+        const pct = Math.round((a / QUESTIONS_COUNT) * 100);
+        progressFill.style.width = pct + "%";
+      }
+    }
+
+    quiz.addEventListener("change", updateProgress);
+
+    submitBtn.addEventListener("click", () => {
+      const { score100, total, maxTotal, unanswered } = computeScoreOutOf100();
+
+      if (unanswered > 0){
+        alert(`Please answer all questions. Missing: ${unanswered}`);
+        return;
+      }
+
+      const b = band(score100);
+
+      scoreText.textContent = score100;
+      scoreFill.style.width = score100 + "%";
+
+      tagDot.style.background = b.dot;
+      tagDot.style.boxShadow = "0 0 14px rgba(0,0,0,.12)";
+      tagText.textContent = b.name;
+
+      recoText.innerHTML = `
+        <strong>Recommendation:</strong> ${b.tip}<br/><br/>
+        <span style="color:rgba(15,23,42,.55); font-weight:700;">Raw: ${total} / ${maxTotal} (normalised to 100)</span>
+      `;
+
+      result.style.display = "block";
+      result.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    resetBtn.addEventListener("click", () => {
+      quiz.reset();
+      result.style.display = "none";
+      scoreFill.style.width = "0%";
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    updateProgress();
+  </script>
+</body>
+</html>
