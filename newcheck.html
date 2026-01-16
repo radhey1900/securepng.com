@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sprint Networks | PNG Security Readiness Checker</title>
+
+<style>
+:root{
+  --primary:#0b3a67;     /* Sprint blue */
+  --accent:#f59e0b;      /* PNG gold */
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --border:#e2e8f0;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.container{
+  max-width:960px;
+  margin:40px auto;
+  padding:0 16px;
+}
+
+.hero{
+  background:linear-gradient(135deg,var(--primary),#0f4c81);
+  color:#fff;
+  border-radius:20px;
+  padding:36px;
+  margin-bottom:30px;
+}
+
+.hero h1{
+  margin:0 0 12px;
+  font-size:30px;
+}
+
+.hero p{
+  max-width:720px;
+  line-height:1.6;
+  opacity:.95;
+}
+
+.card{
+  background:var(--card);
+  border-radius:20px;
+  padding:30px;
+  box-shadow:0 10px 30px rgba(0,0,0,.06);
+  border:1px solid var(--border);
+}
+
+.section{
+  margin-top:32px;
+}
+
+.section h2{
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+.section p{
+  color:var(--muted);
+  margin-bottom:16px;
+}
+
+.question{
+  margin-top:20px;
+}
+
+.question-title{
+  font-weight:600;
+  margin-bottom:12px;
+}
+
+.options{
+  display:grid;
+  gap:12px;
+}
+
+.option{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px 16px;
+  display:flex;
+  gap:12px;
+  cursor:pointer;
+  transition:.15s;
+}
+
+.option:hover{
+  border-color:var(--primary);
+  background:#f8fafc;
+}
+
+.option input{
+  margin-top:3px;
+  accent-color:var(--primary);
+}
+
+.actions{
+  margin-top:32px;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+button{
+  border:none;
+  border-radius:14px;
+  padding:14px 20px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.primary{
+  background:var(--primary);
+  color:#fff;
+}
+
+.secondary{
+  background:#0f172a;
+  color:#fff;
+}
+
+.result{
+  margin-top:30px;
+  padding:24px;
+  border-radius:16px;
+  background:#f8fafc;
+  border:1px dashed var(--border);
+  display:none;
+}
+
+.score{
+  font-size:42px;
+  font-weight:800;
+}
+
+.bar{
+  height:10px;
+  background:#e5e7eb;
+  border-radius:999px;
+  overflow:hidden;
+  margin:10px 0 16px;
+}
+
+.bar div{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+}
+
+.callout{
+  margin-top:30px;
+  background:linear-gradient(135deg,#fff7ed,#fffbeb);
+  border:1px solid #fde68a;
+  border-radius:18px;
+  padding:26px;
+}
+
+.callout h3{
+  margin-top:0;
+}
+
+footer{
+  text-align:center;
+  margin:40px 0 10px;
+  color:var(--muted);
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>PNG Cyber Security Readiness Checker</h1>
+    <p>
+      Built by <strong>Sprint Networks</strong> for Papua New Guinea businesses.
+      This quick check helps you understand how ready your organisation really is
+      against everyday cyber threats — without technical jargon.
+    </p>
+  </div>
+
+  <div class="card">
+    <form id="checker">
+
+      <!-- PHONE SECURITY -->
+      <div class="section">
+        <h2>📱 Device & Phone Security</h2>
+        <p>Lost or stolen phones are one of the most common causes of data leaks in PNG.</p>
+
+        <div class="question" data-question>
+          <div class="question-title">How is your phone secured?</div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q1" data-score="10">
+              PIN + fingerprint/face ID with auto-lock
+            </label>
+            <label class="option">
+              <input type="radio" name="q1" data-score="6">
+              Auto-lock only
+            </label>
+            <label class="option">
+              <input type="radio" name="q1" data-score="0">
+              No lock or unsure
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- UPDATES -->
+      <div class="section">
+        <h2>🔄 Software Updates</h2>
+        <p>Most cyber attacks exploit systems that were never updated.</p>
+
+        <div class="question" data-question>
+          <div class="question-title">How often do you update devices and apps?</div>
+          <div class="options">
+            <label class="option"><input type="radio" name="q2" data-score="10">Automatic updates enabled</label>
+            <label class="option"><input type="radio" name="q2" data-score="7">When prompted</label>
+            <label class="option"><input type="radio" name="q2" data-score="3">Sometimes</label>
+            <label class="option"><input type="radio" name="q2" data-score="0">Rarely / never</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHISHING -->
+      <div class="section">
+        <h2>📧 Phishing Awareness</h2>
+        <p>Email and SMS scams are the #1 cyber threat to PNG organisations.</p>
+
+        <div class="question" data-question>
+          <div class="question-title">Can you recognise a phishing email or SMS?</div>
+          <div class="options">
+            <label class="option"><input type="radio" name="q3" data-score="10">Yes</label>
+            <label class="option"><input type="radio" name="q3" data-score="5">Not always</label>
+            <label class="option"><input type="radio" name="q3" data-score="0">No</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASSWORDS -->
+      <div class="section">
+        <h2>🔐 Password Practices</h2>
+        <p>Weak or reused passwords allow attackers to move quickly inside businesses.</p>
+
+        <div class="question" data-question>
+          <div class="question-title">How do you manage passwords?</div>
+          <div class="options">
+            <label class="option"><input type="radio" name="q4" data-score="10">Unique passphrases everywhere</label>
+            <label class="option"><input type="radio" name="q4" data-score="7">Strong passwords on key systems</label>
+            <label class="option"><input type="radio" name="q4" data-score="2">Same password reused</label>
+            <label class="option"><input type="radio" name="q4" data-score="0">No clear approach</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="primary" type="submit">Get My Security Score</button>
+        <button class="secondary" type="reset">Reset</button>
+      </div>
+
+      <!-- RESULT -->
+      <div class="result" id="result">
+        <div class="score" id="scoreText">0 / 100</div>
+        <div class="bar"><div id="barFill"></div></div>
+        <p id="rating"></p>
+      </div>
+
+    </form>
+
+    <!-- CTA -->
+    <div class="callout">
+      <h3>Need to secure your business properly?</h3>
+      <p>
+        Sprint Networks helps PNG organisations move from awareness to real protection —
+        covering email security, endpoints, firewalls, secure remote access, and staff training.
+      </p>
+      <p><strong>📞 Contact Sprint Networks</strong><br>
+      Let’s turn this score into a practical security plan that actually works in PNG.</p>
+    </div>
+  </div>
+
+  <footer>
+    © Sprint Networks | Practical Cyber Security for PNG Businesses
+  </footer>
+
+</div>
+
+<script>
+const form = document.getElementById("checker");
+const result = document.getElementById("result");
+const scoreText = document.getElementById("scoreText");
+const barFill = document.getElementById("barFill");
+const rating = document.getElementById("rating");
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const questions = form.querySelectorAll("[data-question]");
+  let total = 0, max = 0;
+
+  for (const q of questions){
+    const checked = q.querySelector("input:checked");
+    if (!checked) return alert("Please answer all questions.");
+    total += +checked.dataset.score;
+    max += Math.max(...[...q.querySelectorAll("input")].map(o=>+o.dataset.score));
+  }
+
+  const score = Math.round((total / max) * 100);
+  scoreText.textContent = `${score} / 100`;
+  barFill.style.width = score + "%";
+
+  rating.textContent =
+    score >= 80 ? "Strong security foundation. Focus on consistency." :
+    score >= 60 ? "Good start, but gaps exist." :
+    score >= 40 ? "Security needs attention." :
+    "High risk — urgent action recommended.";
+
+  result.style.display = "block";
+  result.scrollIntoView({behavior:"smooth"});
+});
+</script>
+
+</body>
+</html>
